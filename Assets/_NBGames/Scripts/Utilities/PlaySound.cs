@@ -7,7 +7,7 @@ namespace _NBGames.Scripts.Utilities
     {
         public void PlaySoundEffect(int index)
         {
-            SoundManager.instance.PlaySound(index);
+            SoundManager.Instance.PlaySound(index);
         }
     }
 }

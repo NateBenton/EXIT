@@ -22,7 +22,7 @@ namespace _NBGames.Scripts.Managers
 
         public void NextButton()
         {
-            SoundManager.instance.PlaySound(7);
+            SoundManager.Instance.PlaySound(7);
             if (_index == _explanationImages.Length - 1)
             {
                 EnableReplayExit();
@@ -52,7 +52,7 @@ namespace _NBGames.Scripts.Managers
 
         public void BackButton()
         {
-            SoundManager.instance.PlaySound(7);
+            SoundManager.Instance.PlaySound(7);
             DisableCurrentExplanation();
             _index--;
             EnableCurrentExplanation();

@@ -7,31 +7,31 @@ namespace _NBGames.Scripts.Managers
         [SerializeField] private AudioClip[] _audioClips;
         private AudioSource _audioSource;
     
-        public static SoundManager instance { get; private set; }
+        public static SoundManager Instance { get; private set; }
 
         private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(this.gameObject);
             }
             else
             {
-                Debug.LogError("SoundManager already exists. Destroying!");
+                Debug.LogWarning("SoundManager already exists. Destroying!");
                 Destroy(this.gameObject);
             }
 
             _audioSource = GetComponent<AudioSource>();
             if (_audioSource == null)
             {
-                Debug.LogError($"AudioSource is null on {gameObject.name}");
+                Debug.LogWarning($"AudioSource is null on {gameObject.name}");
             }
         }
 
         public void PlaySound(int index)
         {
-            if (_audioSource == null) return;
+            if (!_audioSource) return;
             _audioSource.PlayOneShot(_audioClips[index]);
         }
     }

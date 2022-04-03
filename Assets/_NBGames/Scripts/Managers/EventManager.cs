@@ -15,33 +15,10 @@ namespace _NBGames.Scripts.Managers
         private static InteractableBehavior _interactableBehavior;
 
         #endregion
-
-        #region PROPERTIES
-
-        public static EventManager instance => _instance;
-
-        #endregion
+        
         
         #region METHODS
 
-        #region STANDARD
-
-        private void Awake()
-        {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(this.gameObject);
-            }
-            else
-            {
-                Debug.LogError("EventManager already exists. Destroying!");
-                Destroy(this.gameObject);
-            }
-        }
-
-        #endregion
-        
         #region PLAYER INTERACTION
 
         public static event Action<int> onChangeCrosshair;

@@ -12,7 +12,7 @@ namespace _NBGames.Scripts.Inventory
         void Start()
         {
             _firstSelectedButton.Select();
-            UIManager.instance.Initialize();
+            UIManager.Instance.Initialize();
 
             Destroy(this.gameObject);
         }

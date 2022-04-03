@@ -64,7 +64,7 @@ namespace _NBGames.Scripts.Inventory
         private void SelectButton()
         {
             _button.Select();
-            UIManager.instance.UpdateActionDescriptionText(_actionName);
+            UIManager.Instance.UpdateActionDescriptionText(_actionName);
             _cursorObject.SetActive(true);
         }
 

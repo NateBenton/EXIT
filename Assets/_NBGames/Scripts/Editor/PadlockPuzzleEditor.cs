@@ -34,7 +34,7 @@ public class PadlockPuzzleEditor : Editor
             {
                 foreach (var wheel in padlockPuzzle.PadlockWheels)
                 {
-                    if (wheel == null) return;
+                    if (!wheel) return;
                     wheel.StartingNumber = Random.Range(0, 9);
                 
                     UpdateWheelRotations(padlockPuzzle.PadlockWheels);
@@ -46,7 +46,7 @@ public class PadlockPuzzleEditor : Editor
         {
             for (var i = 0; i < padlockPuzzle.PadlockWheels.Length; i++)
             {
-                if (padlockPuzzle.PadlockWheels[i] == null) return;
+                if (!padlockPuzzle.PadlockWheels[i]) return;
                 padlockPuzzle.PadlockWheels[i].StartingNumber =
                     EditorGUILayout.IntSlider($"Starting #{i + 1}:", padlockPuzzle.PadlockWheels[i].StartingNumber, 0, 9);
             }

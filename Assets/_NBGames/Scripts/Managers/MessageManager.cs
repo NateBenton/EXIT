@@ -18,18 +18,18 @@ namespace _NBGames.Scripts.Managers
         private bool _showingMessage;
         private Coroutine _coroutine;
 
-        public static MessageManager instance { get; private set; }
+        private static MessageManager Instance { get; set; }
 
         private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(this.gameObject);
             }
             else
             {
-                Debug.LogError("MessageManager already exists! Destroying!");
+                Debug.LogWarning("MessageManager already exists! Destroying!");
                 Destroy(this.gameObject);
             }
         }

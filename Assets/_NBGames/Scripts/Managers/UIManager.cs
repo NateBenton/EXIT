@@ -32,8 +32,8 @@ namespace _NBGames.Scripts.Managers
         
         #region PROPERTIES
 
-        public static UIManager instance { get; private set; }
-        public GameObject firstSelectedSubmenuItem => _firstSelectedSubmenuItem;
+        public static UIManager Instance { get; private set; }
+        public GameObject FirstSelectedSubmenuItem => _firstSelectedSubmenuItem;
 
         #endregion
 
@@ -41,16 +41,16 @@ namespace _NBGames.Scripts.Managers
 
         private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(this.gameObject);
 
                 DialogueManager.instance.interruptActiveConversations = true;
             }
             else
             {
-                Debug.LogError("UIManager already exists. Destroying!");
+                Debug.LogWarning("UIManager already exists. Destroying!");
                 Destroy(this.gameObject);
             }
         }
@@ -130,11 +130,9 @@ namespace _NBGames.Scripts.Managers
         {
             for (var i = 0; i < _inventory.inventorySlots.Count; i++)
             {
-                if (_inventory.inventorySlots[i].slotEnabled && _inventory.inventorySlots[i].item)
-                {
-                    _inventoryUISlots[i].iconSprite.sprite = _inventory.inventorySlots[i].item.menuSprite;
-                    _inventoryUISlots[i].icon.SetActive(true);
-                }
+                if (!_inventory.inventorySlots[i].slotEnabled || !_inventory.inventorySlots[i].item) continue;
+                _inventoryUISlots[i].iconSprite.sprite = _inventory.inventorySlots[i].item.menuSprite;
+                _inventoryUISlots[i].icon.SetActive(true);
             }
         }
 
@@ -163,7 +161,7 @@ namespace _NBGames.Scripts.Managers
 
         private void MoveSelectionMenu()
         {
-            var selectedButton = InventoryManager.instance.selectedInventorySlot.transform.position;
+            var selectedButton = InventoryManager.instance.SelectedInventorySlot.transform.position;
             selectedButton.x += _subMenuXOffset;
             selectedButton.y -= _subMenuYOffset;
 

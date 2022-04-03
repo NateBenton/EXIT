@@ -17,9 +17,9 @@ namespace _NBGames.Scripts.Inventory
             _slotSelectedBackground.SetActive(true);
             EventManager.ChangeDefaultInventoryButton(this.gameObject, slotID);
             
-            UIManager.instance.UpdateItemTextInfo();
+            UIManager.Instance.UpdateItemTextInfo();
             
-            SoundManager.instance.PlaySound(7);
+            SoundManager.Instance.PlaySound(7);
         }
 
         public void OnDeselect(BaseEventData eventData)
@@ -36,7 +36,7 @@ namespace _NBGames.Scripts.Inventory
         public void OnSubmit(BaseEventData eventData)
         {
             InventoryManager.instance.SelectItemButton();
-            SoundManager.instance.PlaySound(7);
+            SoundManager.Instance.PlaySound(7);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -44,7 +44,7 @@ namespace _NBGames.Scripts.Inventory
             if (eventData.button == PointerEventData.InputButton.Left)
             {
                 InventoryManager.instance.SelectItemButton();
-                SoundManager.instance.PlaySound(7);
+                SoundManager.Instance.PlaySound(7);
             }
         }
     }

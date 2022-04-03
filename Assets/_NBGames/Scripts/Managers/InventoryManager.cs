@@ -12,23 +12,20 @@ namespace _NBGames.Scripts.Managers
     public class InventoryManager : MonoBehaviour
     {
         #region VARIABLES
-
-        [SerializeField] private _NBGames.Scripts.Inventory.Inventory[] _playerInventories = null;
+        
         [SerializeField] private _NBGames.Scripts.Inventory.Inventory _activeInventory = null;
         [SerializeField] private GameObject _inventoryController = null;
 
         [SerializeField] [AssetList(AutoPopulate = true, Path = "CraftData")] private CraftData[] _craftData;
         private List<ItemData> _itemsToCombine = new List<ItemData>();
-        private ItemData[] _testArray;
 
         private bool _isInventoryOpen;
-        private GameObject _selectedInventorySlot;
         private GameObject _cachedSubmenuItem, _previousSelectedObject;
         private PromptItemUseBehavior _itemUsePrompt;
         private int _selectedSlotID;
         private ItemData _itemToCraft, _secondItemToCombine;
 
-        private List<int> _combinedItemSlotIDs = new List<int>();
+        private readonly List<int> _combinedItemSlotIDs = new List<int>();
 
         public enum InventoryState
         {
@@ -53,9 +50,9 @@ namespace _NBGames.Scripts.Managers
 
         public ItemData itemInSlot { get; private set; }
 
-        private _NBGames.Scripts.Inventory.Inventory activeInventory => _activeInventory;
+        private _NBGames.Scripts.Inventory.Inventory ActiveInventory => _activeInventory;
 
-        public GameObject selectedInventorySlot => _selectedInventorySlot;
+        public GameObject SelectedInventorySlot { get; private set; }
 
         #endregion
 
@@ -72,7 +69,7 @@ namespace _NBGames.Scripts.Managers
             }
             else
             {
-                Debug.LogError("InventoryManager already exists. Destroying!");
+                Debug.LogWarning("InventoryManager already exists. Destroying!");
                 Destroy(this.gameObject);
             }
         }
@@ -103,14 +100,12 @@ namespace _NBGames.Scripts.Managers
             if (_isInventoryOpen)
             {
                 itemInSlot = _activeInventory.inventorySlots[_selectedSlotID].item;
-                UIManager.instance.UpdateItemTextInfo();
+                UIManager.Instance.UpdateItemTextInfo();
             }
 
-            if (inventoryState == InventoryState.MenuUseItem)
-            {
-                inventoryState = InventoryState.Normal;
-                _itemUsePrompt.DisplayMessageCloseMenu();
-            }
+            if (inventoryState != InventoryState.MenuUseItem) return;
+            inventoryState = InventoryState.Normal;
+            _itemUsePrompt.DisplayMessageCloseMenu();
         }
 
         private void ToggleInventoryControllerUseItem(PromptItemUseBehavior itemUsePrompt)
@@ -129,8 +124,8 @@ namespace _NBGames.Scripts.Managers
                     inventoryState = InventoryState.Submenu;
                     isSelectionMenuOpen = true;
 
-                    UIManager.instance.OpenSelectionMenu();
-                    EventSystem.current.SetSelectedGameObject(UIManager.instance.firstSelectedSubmenuItem);
+                    UIManager.Instance.OpenSelectionMenu();
+                    EventSystem.current.SetSelectedGameObject(UIManager.Instance.FirstSelectedSubmenuItem);
                     break;
                 
                 case InventoryState.Combine:
@@ -145,9 +140,9 @@ namespace _NBGames.Scripts.Managers
 
                         for (var i = 0; i < _activeInventory.inventorySlots.Count; i++)
                         {
-                            if (activeInventory.inventorySlots[i].item != itemInSlot) continue;
+                            if (ActiveInventory.inventorySlots[i].item != itemInSlot) continue;
                             _activeInventory.inventorySlots[i].item = null;
-                            UIManager.instance.ClearItemSlot(i);
+                            UIManager.Instance.ClearItemSlot(i);
                             break;
                         }
 
@@ -165,7 +160,7 @@ namespace _NBGames.Scripts.Managers
 
         private void ChangeSelectedInventorySlot(GameObject slot, int slotID)
         {
-            _selectedInventorySlot = slot;
+            SelectedInventorySlot = slot;
             _selectedSlotID = slotID;
             itemInSlot = _activeInventory.inventorySlots[slotID].item;
             EventSystem.current.firstSelectedGameObject = slot;
@@ -194,22 +189,22 @@ namespace _NBGames.Scripts.Managers
             //if (!itemInSlot.participatesInCrafting) gray out the button in CORE
             inventoryState = InventoryState.Combine;
             isSelectionMenuOpen = false;
-            _previousSelectedObject = selectedInventorySlot;
+            _previousSelectedObject = SelectedInventorySlot;
             
             _itemsToCombine.Add(itemInSlot);
             
             _combinedItemSlotIDs.Add(_selectedSlotID);
-            UIManager.instance.ToggleCombineBackgroundOnFirstSlot(_selectedSlotID);
+            UIManager.Instance.ToggleCombineBackgroundOnFirstSlot(_selectedSlotID);
             EventManager.CloseSubMenuForCombine();
-            UIManager.instance.CloseSelectionMenu();
+            UIManager.Instance.CloseSelectionMenu();
             isSelectionMenuOpen = false;
             
-            EventSystem.current.SetSelectedGameObject(selectedInventorySlot);
+            EventSystem.current.SetSelectedGameObject(SelectedInventorySlot);
         }
 
         private void CheckRecipe()
         {
-            if (selectedInventorySlot == _previousSelectedObject)
+            if (SelectedInventorySlot == _previousSelectedObject)
             {
                 //Debug.Log("same item");
             }
@@ -241,7 +236,7 @@ namespace _NBGames.Scripts.Managers
             foreach (var slotID in _combinedItemSlotIDs)
             {
                 _activeInventory.inventorySlots[slotID].item = null;
-                UIManager.instance.ClearItemSlot(slotID);
+                UIManager.Instance.ClearItemSlot(slotID);
             }
             
             AddCraftedItemToInventory();
@@ -251,7 +246,7 @@ namespace _NBGames.Scripts.Managers
         {
             _activeInventory.inventorySlots[_selectedSlotID].item = _itemToCraft;
             itemInSlot = _activeInventory.inventorySlots[_selectedSlotID].item;
-            UIManager.instance.RedrawAfterItemCombo(_combinedItemSlotIDs[0]);
+            UIManager.Instance.RedrawAfterItemCombo(_combinedItemSlotIDs[0]);
             inventoryState = InventoryState.Normal;
             
             _combinedItemSlotIDs.Clear();
@@ -263,7 +258,7 @@ namespace _NBGames.Scripts.Managers
         public void CancelCombine()
         {
             EventSystem.current.SetSelectedGameObject(_previousSelectedObject);
-            UIManager.instance.ToggleCombineBackgroundOnFirstSlot(_combinedItemSlotIDs[0]);
+            UIManager.Instance.ToggleCombineBackgroundOnFirstSlot(_combinedItemSlotIDs[0]);
             _combinedItemSlotIDs.Clear();
             _itemsToCombine.Clear();
             inventoryState = InventoryState.Normal;
@@ -275,7 +270,7 @@ namespace _NBGames.Scripts.Managers
             _cachedSubmenuItem = EventSystem.current.currentSelectedGameObject;
             inventoryState = InventoryState.MenuExamine;
             EventManager.ExamineObjectSelectedFromMenu(itemInSlot.examinableObject, itemInSlot.examineLengthModifier);
-            UIManager.instance.ExamineObjectChosen();
+            UIManager.Instance.ExamineObjectChosen();
         }
 
         private void CancelExamine()

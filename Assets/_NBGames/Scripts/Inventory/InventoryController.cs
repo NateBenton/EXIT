@@ -31,8 +31,8 @@ namespace _NBGames.Scripts.Inventory
 
         private void NormalStateControls()
         {
-            if (ControlManager.instance.player.GetButtonDown("Inventory Close") ||
-                ControlManager.instance.player.GetButtonDown("Inventory Cancel"))
+            if (ControlManager.instance.Player.GetButtonDown("Inventory Close") ||
+                ControlManager.instance.Player.GetButtonDown("Inventory Cancel"))
             {
                 EventManager.ToggleInventory();
             }
@@ -40,8 +40,8 @@ namespace _NBGames.Scripts.Inventory
 
         private void CombineStateControls()
         {
-            if (ControlManager.instance.player.GetButtonDown("Inventory Close") ||
-                ControlManager.instance.player.GetButtonDown("Inventory Cancel"))
+            if (ControlManager.instance.Player.GetButtonDown("Inventory Close") ||
+                ControlManager.instance.Player.GetButtonDown("Inventory Cancel"))
             {
                 InventoryManager.instance.CancelCombine();
             }
@@ -49,10 +49,10 @@ namespace _NBGames.Scripts.Inventory
 
         private void SubmenuStateControls()
         {
-            if (ControlManager.instance.player.GetButtonDown("Inventory Cancel"))
+            if (ControlManager.instance.Player.GetButtonDown("Inventory Cancel"))
             {
                 EventManager.CloseSelectionMenu();
-                EventSystem.current.SetSelectedGameObject(InventoryManager.instance.selectedInventorySlot);
+                EventSystem.current.SetSelectedGameObject(InventoryManager.instance.SelectedInventorySlot);
             }
         }
     }

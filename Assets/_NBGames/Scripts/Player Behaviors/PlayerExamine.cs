@@ -1,7 +1,6 @@
 ﻿using _NBGames.Scripts.Interactions;
 using _NBGames.Scripts.Managers;
 using _NBGames.Scripts.Utilities;
-using _NBGames.Scripts.Managers;
 using UnityEngine;
 
 namespace _CTGames.Scripts.Player_Behaviors
@@ -54,7 +53,7 @@ namespace _CTGames.Scripts.Player_Behaviors
             
             ControlManager.instance.ChangeControlType(BindingType.Examine);
             _isExamining = true;
-            UIManager.instance.ToggleCrosshair(false);
+            UIManager.Instance.ToggleCrosshair(false);
             _examineLengthModifier = examineLengthModifier;
 
             EventManager.TogglePlayerRaycast(examineLengthModifier);
@@ -107,37 +106,35 @@ namespace _CTGames.Scripts.Player_Behaviors
                 _examinedObject.transform.rotation = _defaultRotation;
             }*/
 
-            if (ControlManager.instance.player.GetButtonDown("Examine Cancel"))
+            if (!ControlManager.instance.Player.GetButtonDown("Examine Cancel")) return;
+            _examineCamera.SetActive(false);
+            UIManager.Instance.ToggleCrosshair(true);
+                
+            if (_examinedFromEnvironment)
             {
-                _examineCamera.SetActive(false);
-                UIManager.instance.ToggleCrosshair(true);
-                
-                if (_examinedFromEnvironment)
-                {
-                    EventManager.TogglePlayerRaycast(_examineLengthModifier);
-                    ControlManager.instance.ChangeControlType(BindingType.Normal);
-                    _environmentComponent.ResetItemPosition();
+                EventManager.TogglePlayerRaycast(_examineLengthModifier);
+                ControlManager.instance.ChangeControlType(BindingType.Normal);
+                _environmentComponent.ResetItemPosition();
                     
-                    EventManager.ToggleMouseLock();
+                EventManager.ToggleMouseLock();
                     
-                    _examinedFromEnvironment = false;
-                }
-                else
-                {
-                    ControlManager.instance.ChangeControlType(BindingType.Inventory);
-                    EventManager.CancelExamineAndReturnToInventory();
-                    EventManager.TogglePlayerRaycast(_examineLengthModifier);
-                }
-                
-                //Destroy(_examinedObject);
-                _isExamining = false;
+                _examinedFromEnvironment = false;
             }
+            else
+            {
+                ControlManager.instance.ChangeControlType(BindingType.Inventory);
+                EventManager.CancelExamineAndReturnToInventory();
+                EventManager.TogglePlayerRaycast(_examineLengthModifier);
+            }
+                
+            //Destroy(_examinedObject);
+            _isExamining = false;
         }
 
         public void ExitExamine()
         {
             _examineCamera.SetActive(false);
-            UIManager.instance.ToggleCrosshair(true);
+            UIManager.Instance.ToggleCrosshair(true);
             
             EventManager.TogglePlayerRaycast(_examineLengthModifier);
             ControlManager.instance.ChangeControlType(BindingType.Normal);
@@ -158,7 +155,7 @@ namespace _CTGames.Scripts.Player_Behaviors
             }
             else
             {
-                _rotationX = ControlManager.instance.player.GetAxis("Examine Mouse Horizontal") *
+                _rotationX = ControlManager.instance.Player.GetAxis("Examine Mouse Horizontal") *
                              _rotationSpeed * Mathf.Deg2Rad;
             }
             
@@ -174,7 +171,7 @@ namespace _CTGames.Scripts.Player_Behaviors
             }
             else
             {
-                _rotationY = ControlManager.instance.player.GetAxis("Examine Mouse Vertical") *
+                _rotationY = ControlManager.instance.Player.GetAxis("Examine Mouse Vertical") *
                              _rotationSpeed * Mathf.Deg2Rad;
             }
 

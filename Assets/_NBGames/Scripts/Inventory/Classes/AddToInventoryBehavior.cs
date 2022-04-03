@@ -69,14 +69,14 @@ namespace _NBGames.Scripts.Inventory.Classes
             DisableCollider();
             EventManager.AddItemToInventory(this);
             _isPickedUp = true;
-            SoundManager.instance.PlaySound(8);
+            SoundManager.Instance.PlaySound(8);
         }
 
         private void Update()
         {
             if (!_isPickedUp) return;
 
-            if (!ControlManager.instance.player.GetButtonDown("ConfirmItem")) return;
+            if (!ControlManager.instance.Player.GetButtonDown("ConfirmItem")) return;
             EventManager.ItemConfirmed();
             DialogueManager.instance.HideAlert();
             Destroy(this.gameObject);

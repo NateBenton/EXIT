@@ -39,7 +39,7 @@ namespace _NBGames.Scripts.Player_Behaviors
             ChangeViewItemPosition(callingObject.transform, callingObject.PositionInView, callingObject.RotationInView);
         }
 
-        private void ChangeViewItemPosition(Transform itemTransform, Vector3 newPosition, Quaternion newRotation)
+        private static void ChangeViewItemPosition(Transform itemTransform, Vector3 newPosition, Quaternion newRotation)
         {
             itemTransform.localPosition = newPosition;
             itemTransform.localRotation = newRotation;
@@ -124,7 +124,7 @@ namespace _NBGames.Scripts.Player_Behaviors
         {
             if (!_canInteractWithObject) return;
 
-            if (ControlManager.instance.player.GetButtonDown("Action Button"))
+            if (ControlManager.instance.Player.GetButtonDown("Action Button"))
             {
                 if (_interactableBehavior)
                 {

@@ -76,43 +76,43 @@ namespace _NBGames.Scripts.InteractionBehaviors
         
         private void ProcessInput()
         {
-            if (ControlManager.instance.player.GetButtonDown("Padlock Right"))
+            if (ControlManager.instance.Player.GetButtonDown("Padlock Right"))
             {
                 DisableCurrentWheelLight();
                 IncreaseWheelIndex();
                 EnableCurrentWheelLight();
             }
 
-            if (ControlManager.instance.player.GetButtonDown("Padlock Left"))
+            if (ControlManager.instance.Player.GetButtonDown("Padlock Left"))
             {
                 DisableCurrentWheelLight();
                 DecreaseWheelIndex();
                 EnableCurrentWheelLight();
             }
 
-            if (ControlManager.instance.player.GetButtonDown("Padlock Up"))
+            if (ControlManager.instance.Player.GetButtonDown("Padlock Up"))
             {
                 ChangeWheelRotation(true);
             }
             
-            if (ControlManager.instance.player.GetButtonDown("Padlock Down"))
+            if (ControlManager.instance.Player.GetButtonDown("Padlock Down"))
             {
                 ChangeWheelRotation(false);
             }
 
-            if (ControlManager.instance.player.GetButtonDown("Padlock Confirm"))
+            if (ControlManager.instance.Player.GetButtonDown("Padlock Confirm"))
             {
                 if (_isUnlocked) return;
                 if (_combination.SequenceEqual(_enteredCombo))
                 {
                     StartCoroutine(UnlockPad());
-                    SoundManager.instance.PlaySound(5);
+                    SoundManager.Instance.PlaySound(5);
                     _isUnlocked = true;
                 }
                 else
                 {
                     _animator.SetTrigger(Fail);
-                    SoundManager.instance.PlaySound(4);
+                    SoundManager.Instance.PlaySound(4);
                 }
             }
         }
@@ -129,7 +129,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
         private void ChangeWheelRotation(bool isTurningUp)
         {
             _currentWheel = _padlockWheels[_currentWheelIndex].gameObject;
-            SoundManager.instance.PlaySound(6);
+            SoundManager.Instance.PlaySound(6);
             
             if (isTurningUp)
             {

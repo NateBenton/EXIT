@@ -118,23 +118,23 @@ namespace _NBGames.Scripts.Controllers
 
             moveDirection = new Vector3
             {
-                x = ControlManager.instance.player.GetAxis("Move Horizontal"),
+                x = ControlManager.instance.Player.GetAxis("Move Horizontal"),
                 y = 0.0f,
-                z = ControlManager.instance.player.GetAxis("Move Vertical")
+                z = ControlManager.instance.Player.GetAxis("Move Vertical")
             };
 
-            if (ControlManager.instance.player.GetButtonDown("Run Button"))
+            if (ControlManager.instance.Player.GetButtonDown("Run Button"))
             {
                 run = !run;
             }
 
-            if (ControlManager.instance.player.GetButtonDown("Crouch Button"))
+            if (ControlManager.instance.Player.GetButtonDown("Crouch Button"))
             {
                 crouch = !crouch;
                 _footStepper.walkTimeout = crouch ? _crouchTimeout : _walkTimeout;
             }
             
-            if (ControlManager.instance.player.GetButtonDown("Menu Button"))
+            if (ControlManager.instance.Player.GetButtonDown("Menu Button"))
             {
                 EventManager.ToggleInventory();
             }
