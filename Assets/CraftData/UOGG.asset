@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4894b27c12c884b9cd99e9a5eaf644, type: 3}
+  m_Name: UOGG
+  m_EditorClassIdentifier: 
+  recipeName: Painting
+  itemCrafted: {fileID: 11400000, guid: fedb5a8ddad828e40b8464058ff33556, type: 2}
+  ingredients:
+  - {fileID: 11400000, guid: 071b6fd0a0e1920408105633e694ec75, type: 2}
+  - {fileID: 11400000, guid: 5cd92640c8ec020438c3a0d71f1e70d0, type: 2}
+  ingredientOrderMatters: 0
+  requiresWorkBench: 0

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f835c74275ff04f478be680798b0a0f3, type: 3}
+  m_Name: GZ6L
+  m_EditorClassIdentifier: 
+  menuSprite: {fileID: 21300000, guid: 04bfd2b1d03948741a72fb8e92efa920, type: 3}
+  itemName: Painting Piece
+  requiresTwoSlots: 0
+  description: Half of a mysterious painting.
+  examineLengthModifier: 0
+  examinableObject: {fileID: 0}
+  itemType: 0
+  canBeStored: 1
+  canBeDiscarded: 0
+  discardToChest: 0
+  canStack: 1
+  maxQuantity: 1
+  usageCount: 1
+  ammoCapacity: 10
+  baseDamage: 20
+  reloadSpeed: 1
+  criticalMultiplier: 2
+  itemUsageSetting: 0
+  itemBehavior: 0
+  healsPlayer: 0
+  healAmount: 0
+  increasesMaxHealth: 0
+  healthIncreaseAmount: 0
+  increasesMaxInventory: 0
+  slotsToAdd: 1
+  increasesReloadSpeed: 0
+  reloadSpeedIncreaseAmount: 0
+  weaponsToReload: []
+  participatesInCrafting: 1

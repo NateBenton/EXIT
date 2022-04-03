@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635bfebfe7180794a95f118a4d319b87, type: 3}
+  m_Name: Concrete_01
+  m_EditorClassIdentifier: 
+  defaultEffect:
+    walkAudioClips:
+    - {fileID: 8300000, guid: 581a34e7c1273d449a3416a06e499e3e, type: 3}
+    - {fileID: 8300000, guid: a9028c39d2374004dac1e95430962ae7, type: 3}
+    - {fileID: 8300000, guid: 8062a7cb8988c6247b7de833842dce04, type: 3}
+    - {fileID: 8300000, guid: 15860691df83bc84885261161d8b5b17, type: 3}
+    - {fileID: 8300000, guid: 70f9b492812f8124e80c40ae4eb5cd27, type: 3}
+    - {fileID: 8300000, guid: 3f13395c9f5fb174ba4ad7d81157bf77, type: 3}
+    - {fileID: 8300000, guid: a94557976ba9a4c43a41861a4029118c, type: 3}
+    - {fileID: 8300000, guid: 449d643fb6393c14ebd137f1f4266435, type: 3}
+    - {fileID: 8300000, guid: b6e9b7bb2aebf284c9e4be6993de0d19, type: 3}
+    - {fileID: 8300000, guid: ab001a16e78967d418ba14c6d4456986, type: 3}
+    walkPrefabs: []
+    runAudioClips: []
+    runPrefabs: []
+    sprintAudioClips:
+    - {fileID: 8300000, guid: f73e58b60ff67a448a0022a2ad24caef, type: 3}
+    - {fileID: 8300000, guid: 167c8d6c458a51e45b8b0da560bdc7f8, type: 3}
+    - {fileID: 8300000, guid: e53ee6ad7afc3554695e49f1e9edc2d1, type: 3}
+    - {fileID: 8300000, guid: 5faa21cebc833bc4aa2bbb5b22f62fd0, type: 3}
+    - {fileID: 8300000, guid: 2b815606a9cecce4bafb33bf82feeb35, type: 3}
+    - {fileID: 8300000, guid: 4e6511271651117439a1ea9978e18eb3, type: 3}
+    - {fileID: 8300000, guid: 8a8db848feeaee94dbb4ccbf73d047fd, type: 3}
+    - {fileID: 8300000, guid: 0a938443fe432084986b365dc52a6d10, type: 3}
+    - {fileID: 8300000, guid: 9120fda2bc615f24ea8d150946c603c8, type: 3}
+    - {fileID: 8300000, guid: 2bab917eb94dab7499df151a731af04e, type: 3}
+    sprintPrefabs: []
+    jumpAudioClips: []
+    jumpPrefabs: []
+    landAudioClips: []
+    landPrefabs: []
+    customEffects: []
+  tagEffects: []
