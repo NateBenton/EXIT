@@ -15,21 +15,19 @@ namespace _NBGames.Scripts.InteractionBehaviors
         [SerializeField] private float _timeBeforeEvents = 1.5f;
         
         private Animator _animator;
-        private bool _isAnimatorNull;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _isAnimatorNull = _animator == null;
 
-            if (_isAnimatorNull)
+            if (!_animator)
             {
-                Debug.LogError($"Animator is null on {gameObject.name}");
+                Debug.LogWarning($"Animator is null on {gameObject.name}");
             }
 
             if (_triggerName == null)
             {
-                Debug.LogError($"No trigger name set on {gameObject.name}");
+                Debug.LogWarning($"No trigger name set on {gameObject.name}");
             }
             else
             {
@@ -44,7 +42,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
 
         private IEnumerator AnimationRoutine()
         {
-            if (_isAnimatorNull) yield return null;
+            if (!_animator) yield return null;
             _animator.SetTrigger(_triggerHash);
 
             yield return new WaitForSeconds(_timeBeforeEvents);

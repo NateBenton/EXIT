@@ -29,14 +29,14 @@ namespace _NBGames.Scripts.Controllers
         {
             base.Awake();
 
-            if (_footStepperObject != null)
+            if (_footStepperObject)
             {
                 _footStepper = _footStepperObject.GetComponent<Footstepper>();
                 _walkTimeout = _footStepper.walkTimeout;
             }
             else
             {
-                Debug.LogError("Foot Stepper Object not found!");
+                Debug.LogWarning("Foot Stepper Object not found!");
             }
         }
 

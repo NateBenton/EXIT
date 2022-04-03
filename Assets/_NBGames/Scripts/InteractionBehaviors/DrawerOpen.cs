@@ -36,7 +36,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
 
             if (_isAudioSourceNull)
             {
-                Debug.LogError($"AudioSource is null on {gameObject.name}");
+                Debug.LogWarning($"AudioSource is null on {gameObject.name}");
             }
         }
 
@@ -71,7 +71,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
             _isOpen = true;
             _isOperating = false;
 
-            if (_itemWithin == null) return;
+            if (!_itemWithin) return;
             _itemWithin.EnableCollider();
         }
 
@@ -83,7 +83,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
             _isOperating = false;
             _isOpen = false;
 
-            if (_itemWithin == null) return;
+            if (!_itemWithin) return;
             _itemWithin.DisableCollider();
         }
     }

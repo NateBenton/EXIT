@@ -18,7 +18,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
 
         public void PlayAnimation()
         {
-            if (_animator == null) return;
+            if (!_animator) return;
             _animator.SetTrigger(_animationHash);
         }
     }

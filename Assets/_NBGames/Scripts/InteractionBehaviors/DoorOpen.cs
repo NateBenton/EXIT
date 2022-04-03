@@ -8,7 +8,6 @@ namespace _NBGames.Scripts.InteractionBehaviors
     {
         [SerializeField] private AddToInventoryBehavior _itemInside;
         private Animator _animator;
-        private bool _isAnimatorNull, _isAudioSourceNull;
         private AudioSource _audioSource;
 
         private bool _isOpen;
@@ -19,28 +18,25 @@ namespace _NBGames.Scripts.InteractionBehaviors
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _isAnimatorNull = _animator == null;
-
             _audioSource = GetComponent<AudioSource>();
-            _isAudioSourceNull = _audioSource == null;
 
-            if (_isAnimatorNull)
+            if (!_animator)
             {
-                Debug.LogError($"Animator is null on {gameObject.name}");
+                Debug.LogWarning($"Animator is null on {gameObject.name}");
             }
 
-            if (_isAudioSourceNull)
+            if (!_audioSource)
             {
-                Debug.LogError($"AudioSource is null on {gameObject.name}");
+                Debug.LogWarning($"AudioSource is null on {gameObject.name}");
             }
         }
         
         public override void Interact()
         {
-            if (_isAnimatorNull) return;
+            if (!_animator) return;
             if (!_canInteract) return;
 
-            if (!_isAudioSourceNull)
+            if (_audioSource)
             {
                 _audioSource.Play();
             }

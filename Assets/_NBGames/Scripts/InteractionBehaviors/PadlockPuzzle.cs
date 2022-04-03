@@ -48,7 +48,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
 
             if (_isAnimatorNull)
             {
-                Debug.LogError($"Animator is null on {gameObject.name}");
+                Debug.LogWarning($"Animator is null on {gameObject.name}");
             }
 
             if (_combination.Length != 0)
@@ -60,7 +60,7 @@ namespace _NBGames.Scripts.InteractionBehaviors
             }
             else
             {
-                Debug.LogError($"Combination was not set on {gameObject.name}");
+                Debug.LogWarning($"Combination was not set on {gameObject.name}");
             }
         }
 
